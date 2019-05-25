@@ -1,7 +1,7 @@
 version: "3"
 services:
   server:
-    image: gocd/gocd-server:v19.1.0
+    image: gocd/gocd-server:v19.3.0
 
     ports:
       - "8153:8153"
@@ -14,18 +14,34 @@ services:
       - ./scripts/shared:/shared
 
     environment:
-      - GO_SERVER_SYSTEM_PROPERTIES=-Dcruise.material.update.interval=2000 -Dmaterial.update.idle.interval=2000
-
-    depends_on:
-      - "gitserver"
+      - JAVA_TOOL_OPTIONS=
+        -XX:+UnlockExperimentalVMOptions
+        -XX:+UseCGroupMemoryLimitForHeap
+        -XX:+UseParallelGC
+        -XX:MinHeapFreeRatio=5
+        -XX:MaxHeapFreeRatio=10
+        -XX:GCTimeRatio=4
+        -XX:AdaptiveSizePolicyWeight=90
+      - GO_SERVER_SYSTEM_PROPERTIES=
+        -Dcruise.material.update.interval=2000
+        -Dmaterial.update.idle.interval=2000
+      - CONFIG_GIT_REPO=https://github.com/TimJDFletcher/example-gocd-pipelines.git
+      - CONFIG_GIT_BRANCH=master
 
   agent:
-    image: gocd/gocd-agent-alpine-3.8:v19.1.0
+    image: gocd/gocd-agent-alpine-3.8:v19.3.0
 
     environment:
       - GO_SERVER_URL=https://server:8154/go
       - AGENT_AUTO_REGISTER_KEY=agent-autoregister-key
-
+      - JAVA_TOOL_OPTIONS=
+        -XX:+UnlockExperimentalVMOptions
+        -XX:+UseCGroupMemoryLimitForHeap
+        -XX:+UseParallelGC
+        -XX:MinHeapFreeRatio=5
+        -XX:MaxHeapFreeRatio=10
+        -XX:GCTimeRatio=4
+        -XX:AdaptiveSizePolicyWeight=90
     volumes:
       - ./scripts/agent:/docker-entrypoint.d
       - ./scripts/shared:/shared
@@ -35,13 +51,3 @@ services:
 
     depends_on:
       - "server"
-      - "gitserver"
-
-  gitserver:
-    image: gocdcontrib/git-http-backend:v2
-
-    ports:
-      - "8155:80"
-
-    volumes:
-      - ./repositories:/git
