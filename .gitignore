@@ -10,3 +10,5 @@ data/plugins/bundled/
 data/plugins/go-plugins-all.zip
 
 data/artifacts/
+
+scripts/shared/autoregister.key
