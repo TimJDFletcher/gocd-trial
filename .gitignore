@@ -1,8 +1,9 @@
 config/
 
+data/db/
+data/db/h2db/cruise.h2.db
 data/db/h2db/cruise.trace.db
 data/db/h2db/cruise.lock.db
-data/db/
 
 data/logs/
 
