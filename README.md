@@ -14,13 +14,13 @@ Table of Contents
 
 # How to use
 
+This repo uses the pipeline from here: https://github.com/TimJDFletcher/example-gocd-pipelines
+
 This trial is intended to be used to quickly and easily try out GoCD. It is *not* intended for production use.
 
 Once you start the GoCD trial it will show you example pipelines as well as execution data and value stream maps. You will also be able to edit the configuration and run builds.
 
 Use this trial in combination with the [GoCD documentation](https://www.gocd.org/getting-started/part-1/) to understand more about GoCD's capabilities.
-
-If you need support while trying GoCD feel free chat to us on [Gitter](https://gitter.im/gocd/gocd) or join our [Google Group](https://groups.google.com/forum/#!forum/go-cd).
 
 # Dependencies
 
@@ -38,7 +38,7 @@ Open terminal
 Clone the repo, by typing:
 
 ```
-git clone https://github.com/gocd/gocd-trial.git
+git clone https://github.com/TimJDFletcher/gocd-trial.git
 ```
 
 Navigate to the template directory, by typing:
@@ -54,17 +54,15 @@ Start the GoCD server, by typing:
 docker-compose up -d
 ```
 
-This starts 3 docker containers that are hosting:
+This starts 2 docker containers that are hosting:
 - GoCD server
 - GoCD agent
-- git server (which is hosting "repo1" that contains the GoCD config and materials for this trial)
 
 You will see:
 
 
 ```
 Creating network "gocd-trial_default" with the default driver
-Creating gocd-trial_gitserver_1 ... done
 Creating gocd-trial_server_1    ... done
 Creating gocd-trial_agent_1     ... done
 ```
