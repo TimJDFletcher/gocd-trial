@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="113">
-  <server artifactsdir="artifacts" agentAutoRegisterKey="agent-autoregister-key" commandRepositoryLocation="default">
-    <backup emailOnSuccess="true" emailOnFailure="true" />
-  </server>
-  <config-repos>
-    <config-repo pluginId="json.config.plugin" id="demo-config-repo">
-      <git url="https://github.com/TimJDFletcher/example-gocd-pipelines.git" />
-    </config-repo>
-  </config-repos>
-  <pipelines group="Build_and_Deploy" />
+    <server artifactsdir="artifacts" agentAutoRegisterKey="agent-autoregister-key" commandRepositoryLocation="default">
+        <backup emailOnSuccess="true" emailOnFailure="true" />
+    </server>
+    <config-repos>
+        <config-repo pluginId="yaml.config.plugin" id="terraform">
+            <git url="https://github.com/TimJDFletcher/terraform-in-gocd-example.git" />
+            <configuration>
+                <property>
+                    <key>file_pattern</key>
+                    <value>pipeline.gocd.yaml</value>
+                </property>
+            </configuration>
+        </config-repo>
+    </config-repos>
 </cruise>
