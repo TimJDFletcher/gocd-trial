@@ -32,6 +32,11 @@ services:
     image: gocd/gocd-agent-alpine-3.8:v19.3.0
 
     environment:
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+      - AWS_REGION=${AWS_REGION}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}
       - GO_SERVER_URL=https://server:8154/go
       - AGENT_AUTO_REGISTER_KEY=agent-autoregister-key
       - JAVA_TOOL_OPTIONS=
